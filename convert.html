@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSV to JSON Converter</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function convertCSVtoJSON(csvData) {
+                var lines = csvData.split('\n');
+                var result = [];
+                var headers = lines[0].split(',');
+
+                for (var i = 1; i < lines.length; i++) {
+                    var obj = {};
+                    var currentLine = lines[i].split(',');
+
+                    for (var j = 0; j < headers.length; j++) {
+                        obj[headers[j]] = currentLine[j];
+                    }
+
+                    result.push(obj);
+                }
+
+                return result;
+            }
+
+            $('#convertForm').submit(function(event) {
+                event.preventDefault();
+                var csvData = $('#csvData').val();
+                var jsonData = convertCSVtoJSON(csvData);
+
+                $('#jsonResult').text(JSON.stringify(jsonData, null, 4));
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>CSV to JSON Converter</h1>
+    <form id="convertForm">
+        <textarea id="csvData" rows="10" cols="50" placeholder="Paste CSV data here"></textarea>
+        <br>
+        <input type="submit" value="Convert">
+    </form>
+
+    <pre id="jsonResult"></pre>
+</body>
+</html>
