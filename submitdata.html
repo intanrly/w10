@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Submit</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #afe0b0;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .form-container h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555555;
+            font-size: 16px;
+        }
+
+        .form-container input[type="text"],
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Form Submit</h1>
+        <form id="submit-form">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+            <label for="pesan">Pesan:</label>
+            <textarea id="pesan" name="pesan" required></textarea>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <table id="submit-table" style="display: none;">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Pesan</th>
+            </tr>
+        </thead>
+        <tbody id="submit-body">
+        </tbody>
+    </table>
+
+    <script>
+        const form = document.getElementById('submit-form');
+        const table = document.getElementById('submit-table');
+        const tbody = document.getElementById('submit-body');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nama = document.getElementById('nama').value;
+            const pesan = document.getElementById('pesan').value;
+
+            const row = document.createElement('tr');
+            const namaCell = document.createElement('td');
+            const pesanCell = document.createElement('td');
+
+            namaCell.textContent = nama;
+            pesanCell.textContent = pesan;
+
+            row.appendChild(namaCell);
+            row.appendChild(pesanCell);
+
+            tbody.appendChild(row);
+            table.style.display = 'table';
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
