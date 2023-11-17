@@ -26,10 +26,20 @@
 
             $('#convertForm').submit(function(event) {
                 event.preventDefault();
-                var csvData = $('#csvData').val();
-                var jsonData = convertCSVtoJSON(csvData);
+                var file = $('#csvFile')[0].files[0];
 
-                $('#jsonResult').text(JSON.stringify(jsonData, null, 4));
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var csvData = e.target.result;
+                        var jsonData = convertCSVtoJSON(csvData);
+
+                        $('#jsonResult').text(JSON.stringify(jsonData, null, 4));
+                    };
+                    reader.readAsText(file);
+                } else {
+                    $('#jsonResult').text('Please select a CSV file.');
+                }
             });
         });
     </script>
@@ -37,7 +47,7 @@
 <body>
     <h1>CSV to JSON Converter</h1>
     <form id="convertForm">
-        <textarea id="csvData" rows="10" cols="50" placeholder="Paste CSV data here"></textarea>
+        <input type="file" id="csvFile">
         <br>
         <input type="submit" value="Convert">
     </form>
