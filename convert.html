@@ -2,6 +2,81 @@
 <html>
 <head>
     <title>CSV to JSON Converter</title>
+    <style>
+        body {
+            background: #fff;
+            color: #222;
+            font-family: 'Source Sans Pro', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .code {
+            font-family: 'PT Mono', serif;
+            color: #090;
+        }
+        .writing {
+            width: 74%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        @media (max-width: 560px) {
+        .writing {
+            width: 96%;
+        }
+        }
+
+        .background-oregon-grapes {
+            background-color: rgb(5, 79, 79) ;
+            background-size: 100%;
+            height: 560px;
+            width: 560px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 767px) {
+        .background-oregon-grapes {
+            height: 330px;
+            width: 330px;
+        }
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+
+        p {
+            padding-bottom: 25px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            color: rgb(5, 79, 79);
+        }
+
+        .number {
+            color: aquamarine;
+        }
+
+        button,
+        input {
+            background-color: rgb(5, 79, 79);
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+    </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -45,13 +120,16 @@
     </script>
 </head>
 <body>
-    <h1>CSV to JSON Converter</h1>
-    <form id="convertForm">
-        <input type="file" id="csvFile">
-        <br>
-        <input type="submit" value="Convert">
-    </form>
+    <div class="background-oregon-grapes"></div>
+    <div class="writing">
+        <h1>CSV to JSON Converter</h1>
+        <form id="convertForm">
+            <input type="file" id="csvFile">
+            <br>
+            <input type="submit" value="Convert">
+        </form>
 
-    <pre id="jsonResult"></pre>
+        <pre id="jsonResult"></pre>
+    </div>
 </body>
 </html>
